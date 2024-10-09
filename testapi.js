@@ -1,29 +1,18 @@
-const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
-const https = require("https");
-const fs = require("fs");
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = 5010;
 
-// Load SSL certificate and key
-const options = {
-  key: fs.readFileSync("private-key.pem"), 
-  cert: fs.readFileSync("certificate.pem"), 
-};
+// Enable CORS
+app.use(cors());
 
-app.use(bodyParser.json(), cors());
-
-app.get("/", (req, res) => {
-  res.send("Welcome to the test API");
-});
-
+// Sample endpoint
 app.get("/api", (req, res) => {
   res.json([{ count_a: 7, count_b: 2 }]);
 });
 
-// Create HTTPS server
-https.createServer(options, app).listen(PORT, () => {
-  console.log(`HTTPS Server is running on port ${PORT}`);
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
