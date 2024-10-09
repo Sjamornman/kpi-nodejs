@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-const PORT = 5010;
+const PORT = 8080;
 
 // Enable CORS
 app.use(cors());
